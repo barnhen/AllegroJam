@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JamSessions", "JamSessions\JamSessions.vcxproj", "{EB5A0513-E2BA-4380-9A86-D80B6FBF8A1B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroSpriteSheetAnim", "..\..\destruct-roids\AllegroTest\AllegroSpriteSheetAnim\AllegroSpriteSheetAnim.vcxproj", "{38217DAD-A79C-4F2A-9A63-87E555F2F747}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroOO.01", "..\..\destruct-roids\AllegroOO\AllegroOO.01\AllegroOO.01.vcxproj", "{DA67E225-9DC2-427B-A558-9BBDF4682457}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Allegro 5 Platformer", "C:\Users\barnabot\Downloads\Allegro 5 Platformer\Allegro 5 Platformer\Allegro 5 Platformer\Allegro 5 Platformer.vcxproj", "{9BBD1C82-013D-4D95-9702-364B4CA81B05}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroCombinedCollision", "..\..\destruct-roids\AllegroTest\AllegroCombinedCollision\AllegroCombinedCollision.vcxproj", "{1B1B4AF8-8F4C-433F-985E-E90165212217}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroDistanceCollision", "..\..\destruct-roids\AllegroTest\AllegroDistanceCollision\AllegroDistanceCollision.vcxproj", "{922CFF19-0F78-4619-9E71-66ADA850F135}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RainRunner", "RainRunner\RainRunner.vcxproj", "{4B2EE886-6AFE-4B57-954F-BF0554F76767}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB5A0513-E2BA-4380-9A86-D80B6FBF8A1B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB5A0513-E2BA-4380-9A86-D80B6FBF8A1B}.Debug|Win32.Build.0 = Debug|Win32
+		{EB5A0513-E2BA-4380-9A86-D80B6FBF8A1B}.Release|Win32.ActiveCfg = Release|Win32
+		{EB5A0513-E2BA-4380-9A86-D80B6FBF8A1B}.Release|Win32.Build.0 = Release|Win32
+		{38217DAD-A79C-4F2A-9A63-87E555F2F747}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38217DAD-A79C-4F2A-9A63-87E555F2F747}.Debug|Win32.Build.0 = Debug|Win32
+		{38217DAD-A79C-4F2A-9A63-87E555F2F747}.Release|Win32.ActiveCfg = Release|Win32
+		{38217DAD-A79C-4F2A-9A63-87E555F2F747}.Release|Win32.Build.0 = Release|Win32
+		{DA67E225-9DC2-427B-A558-9BBDF4682457}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA67E225-9DC2-427B-A558-9BBDF4682457}.Debug|Win32.Build.0 = Debug|Win32
+		{DA67E225-9DC2-427B-A558-9BBDF4682457}.Release|Win32.ActiveCfg = Release|Win32
+		{DA67E225-9DC2-427B-A558-9BBDF4682457}.Release|Win32.Build.0 = Release|Win32
+		{9BBD1C82-013D-4D95-9702-364B4CA81B05}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9BBD1C82-013D-4D95-9702-364B4CA81B05}.Debug|Win32.Build.0 = Debug|Win32
+		{9BBD1C82-013D-4D95-9702-364B4CA81B05}.Release|Win32.ActiveCfg = Release|Win32
+		{9BBD1C82-013D-4D95-9702-364B4CA81B05}.Release|Win32.Build.0 = Release|Win32
+		{1B1B4AF8-8F4C-433F-985E-E90165212217}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1B1B4AF8-8F4C-433F-985E-E90165212217}.Debug|Win32.Build.0 = Debug|Win32
+		{1B1B4AF8-8F4C-433F-985E-E90165212217}.Release|Win32.ActiveCfg = Release|Win32
+		{1B1B4AF8-8F4C-433F-985E-E90165212217}.Release|Win32.Build.0 = Release|Win32
+		{922CFF19-0F78-4619-9E71-66ADA850F135}.Debug|Win32.ActiveCfg = Debug|Win32
+		{922CFF19-0F78-4619-9E71-66ADA850F135}.Debug|Win32.Build.0 = Debug|Win32
+		{922CFF19-0F78-4619-9E71-66ADA850F135}.Release|Win32.ActiveCfg = Release|Win32
+		{922CFF19-0F78-4619-9E71-66ADA850F135}.Release|Win32.Build.0 = Release|Win32
+		{4B2EE886-6AFE-4B57-954F-BF0554F76767}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4B2EE886-6AFE-4B57-954F-BF0554F76767}.Debug|Win32.Build.0 = Debug|Win32
+		{4B2EE886-6AFE-4B57-954F-BF0554F76767}.Release|Win32.ActiveCfg = Release|Win32
+		{4B2EE886-6AFE-4B57-954F-BF0554F76767}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
