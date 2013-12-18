@@ -20,14 +20,15 @@ void Player::Init(ALLEGRO_BITMAP *image = NULL)
 	lives = 3;
 	score = 0;
 
-	maxFrame = 3; // old 3
+	maxFrame = 14; // old 3
 	curFrame = 0;
-	frameWidth = 31.6; //old 31.6
-	frameHeight = 32; //old 32
-	animationColumns = 3; //old 3
+	frameWidth = 88; //old 31.6
+	frameHeight = 88; //old 32
+	animationColumns = 29; //old 3
 	animationDirection = 1;
 
 	animationRow = 2;
+	flip = false;
 
 	if(image != NULL)
 		Player::image = image;
@@ -61,46 +62,94 @@ void Player::Render()
 	std::cout<<"animationColumns is "<<animationColumns<<std::endl;
 	std::cout<<"animationRow is "<<animationRow<<std::endl;
 	std::cout<<"frameHeight is "<<frameHeight<<std::endl;
-	int fx = (curFrame % animationColumns) * frameWidth;
+	//if (animationRow == 2)
+	//	int fx = (curFrame % animationColumns) * frameWidth;
+	//else
+		int fx = (curFrame) * frameWidth;
 	int fy = animationRow * frameHeight;
 
-	al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
-		x - frameWidth / 2, y - frameHeight / 2, 0);
+	
+	if (flip == true){
+		if (animationRow == 6 && curFrame == 15)
+		{
+			curFrame = 0;
+		}
+		else if (animationRow == 2)
+		{
+			 if (curFrame >= 4)
+			curFrame = 0;
+		}
+		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
+					x - frameWidth / 2, y - frameHeight / 2, ALLEGRO_FLIP_HORIZONTAL);	
+	}
+
+	else
+	{
+		if (animationRow == 6 && curFrame == 15)
+		{
+			curFrame = 0;
+		}
+		else if (animationRow == 2 && curFrame >= 4)
+		{
+			curFrame = 0;
+		}
+		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
+			x - frameWidth / 2, y - frameHeight / 2, 0);
+	}
+	
+	/*
+	//for (curFrame = 0; curFrame  < 4 ; curFrame++)
+	{
+		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
+			x - frameWidth / 2, y - frameHeight / 2, 0);
+		//al_draw_bitmap_region(image, curFrame * frameWidth,0, frameWidth, frameHeight, x,y,0);
+	}
+	//curFrame = 0;
+	*/
+		
 }
 
 void Player::MoveUp()
 {
 	animationRow = 3;
+	flip = false;
 	dirY = -1;
 	dirX=0;
+	Player::frameDelay =3;
 }
 void Player::MoveDown()
 {
 	animationRow = 0;
+	flip = false;
 	dirY = 1;
 	dirX=0;
+	Player::frameDelay =3;
 }
 void Player::MoveLeft()
 {
-	animationRow = 1;
+	animationRow = 6; //old 1
+	flip = true;
 	//curFrame = 2;
 	//curFrame =+ curFrame;
 	dirX = -1;
 	dirY=0;
+	Player::frameDelay =5;
 }
 void Player::MoveRight()
 
 {
-	animationRow = 2;
+	animationRow = 6;
+	flip = false;
 	//curFrame = 2;
 	dirX = 1;
 	dirY=0;
+	Player::frameDelay =5;
 	
 }
 
 void Player::Jump()
 {
-
+	Player::frameDelay =3;
 }
 
 void Player::ResetAnimation(int position)
@@ -112,26 +161,36 @@ void Player::ResetAnimation(int position)
 		//curFrame=0;
 		dirY = 0;
 		dirX = 0;
+		Player::frameDelay =3;
 	}
 	else if (position == 2)
 	{
 		//animationRow = 2;
 		dirY = 0;
 		dirX = 0;
+		Player::frameDelay =3;
 	}
 	else if (position == 3)
 	{
 		//animationRow = 3;
 		dirX = 0;
 		dirY = 0;
+		Player::frameDelay =3;
 	}
 	else if (position == 0)
 	{
+		/*
+		if (animationRow == 6 && flip ==  true)
+		{
+			flip = true;
+		}
+		*/
 
-		
 		dirX = 0;
 		dirY = 0;
-		curFrame = 0;
+		//curFrame = 0;
+		animationRow = 2;
+		Player::frameDelay =28;
 	}
 }
 

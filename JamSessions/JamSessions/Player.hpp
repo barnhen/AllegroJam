@@ -1,18 +1,25 @@
 #pragma once
 
 #include <allegro5\allegro5.h>
-#include "GameObject.h"
+#include<allegro5\allegro_font.h>
+#include<allegro5\allegro_ttf.h>
+#include<allegro5\allegro_image.h>
+#include "GameObject.hpp"
+
+
 class Player : public GameObject
 {
 private:
 	int lives;
 	int score;
 	int animationRow;
-	boolean flip;
+	ALLEGRO_BITMAP *image;
+	
 public:
 	Player();
 	~Player();
 
+	void Destroy();
 	void Init(ALLEGRO_BITMAP *image);
 	void Update();
 	void Render();
@@ -32,6 +39,8 @@ public:
 	void AddPoint();
 
 	void Collided(int objectID);
+
+	void ChangeStance(int &stance2, int newStance, ALLEGRO_BITMAP *image);
 
 	
 };

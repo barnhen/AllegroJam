@@ -90,7 +90,7 @@ int main(){
 	font18 = al_load_font("arial.ttf", 18, 0);
 
 	//image = al_load_bitmap("player.png");
-	image = al_load_bitmap("player.png");
+	image = al_load_bitmap("mmx_x4_x_sheet_v1.png");
 	if(!image){
 		std::cout<<"Couldn't load player image"<<std::endl;
 		return -1;
@@ -246,8 +246,10 @@ int main(){
 
 			if(keys[UP])
 			{
+				
 				for(iter = objects.begin(); iter != objects.end(); ++iter)
 				(*iter)->Update();
+				
 
 				player->MoveUp();
 				//keys[DOWN]=false;
@@ -256,8 +258,10 @@ int main(){
 			}
 			else if(keys[DOWN])
 			{
+				
 				for(iter = objects.begin(); iter != objects.end(); ++iter)
 				(*iter)->Update();
+				
 
 				player->MoveDown();
 				//keys[UP]=false;
@@ -266,8 +270,10 @@ int main(){
 			}
 			else if(keys[LEFT])
 			{
+				
 				for(iter = objects.begin(); iter != objects.end(); ++iter)
 				(*iter)->Update();
+				
 
 				player->MoveLeft();
 				//keys[DOWN]=false;
@@ -304,6 +310,12 @@ int main(){
 					player->ResetAnimation(0);
 				//player->ResetAnimation(0);// old 0
 			*/
+/*
+				for(iter = objects.begin(); iter != objects.end(); ++iter)
+				(*iter)->Update();
+*/
+				//player->ResetAnimation(0);
+				player->Update();
 				player->ResetAnimation(0);
 				/*
 				if(keys[UP])
@@ -323,10 +335,10 @@ int main(){
 			}
 
 			//update
-			/*
-			for(iter = objects.begin(); iter != objects.end(); ++iter)
-				(*iter)->Update();
-			*/
+			
+			//for(iter = objects.begin(); iter != objects.end(); ++iter)
+			//	(*iter)->Update();
+			
 			/*
 			if(++player->frameCount >= frameDelay){
 				if(++curFrame >= maxFrame)

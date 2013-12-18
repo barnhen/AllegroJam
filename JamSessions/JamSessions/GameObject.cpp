@@ -18,7 +18,7 @@ GameObject::GameObject()
 	maxFrame = 0;
 	curFrame = 0;
 	frameCount = 0;
-	frameDelay = 6;
+	frameDelay = 3;
 	frameWidth = 0;
 	frameHeight = 0;
 	animationColumns = 0;
