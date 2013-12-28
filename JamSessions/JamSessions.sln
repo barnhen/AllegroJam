@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rain_runner", "..\..\rain_r
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroPlatform1", "..\..\allegro-platform\AllegroPlatform1\AllegroPlatform1\AllegroPlatform1.vcxproj", "{E442FC9F-2728-4A7E-A4DE-28E491B20851}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroTiledBackground", "..\..\destruct-roids\AllegroTest\AllegroTiledBackground\AllegroTiledBackground.vcxproj", "{FCBDEE12-5026-4071-985B-B259B82F2931}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -55,6 +57,10 @@ Global
 		{E442FC9F-2728-4A7E-A4DE-28E491B20851}.Debug|Win32.Build.0 = Debug|Win32
 		{E442FC9F-2728-4A7E-A4DE-28E491B20851}.Release|Win32.ActiveCfg = Release|Win32
 		{E442FC9F-2728-4A7E-A4DE-28E491B20851}.Release|Win32.Build.0 = Release|Win32
+		{FCBDEE12-5026-4071-985B-B259B82F2931}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FCBDEE12-5026-4071-985B-B259B82F2931}.Debug|Win32.Build.0 = Debug|Win32
+		{FCBDEE12-5026-4071-985B-B259B82F2931}.Release|Win32.ActiveCfg = Release|Win32
+		{FCBDEE12-5026-4071-985B-B259B82F2931}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

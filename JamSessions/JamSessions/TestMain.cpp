@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Globals.h"
 #include "InputManager.h"
+#include "Background.hpp"
 
 bool keys[] = {false, false, false, false, false};
 enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE};
@@ -59,6 +60,8 @@ int main(){
 	ALLEGRO_TIMER *timer;
 	ALLEGRO_BITMAP *image = NULL;
 	ALLEGRO_FONT *font18 = NULL;
+	//ALLEGRO_BITMAP *bgImage = NULL;
+	ALLEGRO_BITMAP *bgSheet=NULL;
 	
 	//==============================================
 	//ALLEGRO INIT FUNCTIONS
@@ -89,6 +92,16 @@ int main(){
 	//==============================================
 	font18 = al_load_font("arial.ttf", 18, 0);
 
+	
+	//bgImage = al_load_bitmap("tile_stage1_bottom.png");
+	bgSheet = al_load_bitmap("background.png");
+	//by makinge 'new' they are different bg in memory
+	//Background *bg = new Background(bgImage, 1);
+	
+	//by makinge 'new' they are different bg in memory
+	Background *bg = new Background(bgSheet, 1);
+	objects.push_back(bg);
+
 	//image = al_load_bitmap("player.png");
 	image = al_load_bitmap("mmx_x4_x_sheet_v1.png");
 	if(!image){
@@ -98,6 +111,7 @@ int main(){
 	al_convert_mask_to_alpha(image, al_map_rgb(255,255,255));
 	player->Init(image);
 	objects.push_back(player);
+
 
 	eventQueue = al_create_event_queue();
 	timer = al_create_timer(1.0 / 60);
@@ -415,6 +429,8 @@ int main(){
 	}
 
 	al_destroy_bitmap(image);
+	//al_destroy_bitmap(bgImage);
+	al_destroy_bitmap(bgSheet);
 	al_destroy_font(font18);
 	al_destroy_event_queue(eventQueue);
 	al_destroy_display(display);

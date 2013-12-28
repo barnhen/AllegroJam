@@ -58,18 +58,19 @@ void Player::Render()
 {
 	GameObject::Render();
 
-	std::cout<<"curFrame is "<<curFrame<<std::endl;
-	std::cout<<"animationColumns is "<<animationColumns<<std::endl;
-	std::cout<<"animationRow is "<<animationRow<<std::endl;
-	std::cout<<"frameHeight is "<<frameHeight<<std::endl;
+	//std::cout<<"curFrame is "<<curFrame<<std::endl;
+	//std::cout<<"animationColumns is "<<animationColumns<<std::endl;
+	//std::cout<<"animationRow is "<<animationRow<<std::endl;
+	//std::cout<<"frameHeight is "<<frameHeight<<std::endl;
 	//if (animationRow == 2)
 	//	int fx = (curFrame % animationColumns) * frameWidth;
 	//else
-		int fx = (curFrame) * frameWidth;
+	int fx = (curFrame) * frameWidth;
 	int fy = animationRow * frameHeight;
 
 	
 	if (flip == true){
+		/*
 		if (animationRow == 6 && curFrame == 15)
 		{
 			curFrame = 0;
@@ -79,22 +80,33 @@ void Player::Render()
 			 if (curFrame >= 4)
 			curFrame = 0;
 		}
+		*/
+		/*
 		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
 					x - frameWidth / 2, y - frameHeight / 2, ALLEGRO_FLIP_HORIZONTAL);	
+		*/
+		al_draw_scaled_bitmap(image, fx, fy, frameWidth, frameHeight, 
+			x - frameWidth / 2, y - frameHeight / 2, frameWidth * 2, frameHeight * 2,ALLEGRO_FLIP_HORIZONTAL);
 	}
 
 	else
 	{
+		/*
 		if (animationRow == 6 && curFrame == 15)
 		{
 			curFrame = 0;
 		}
-		else if (animationRow == 2 && curFrame >= 4)
+		else if (animationRow == 2 && curFrame > 4)
 		{
 			curFrame = 0;
 		}
+		*/
+		/*
 		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight,
 			x - frameWidth / 2, y - frameHeight / 2, 0);
+		*/
+		al_draw_scaled_bitmap(image, fx, fy, frameWidth, frameHeight, 
+			x - frameWidth / 2, y - frameHeight / 2, frameWidth * 2, frameHeight * 2,0);
 	}
 	
 	/*
@@ -133,7 +145,13 @@ void Player::MoveLeft()
 	//curFrame =+ curFrame;
 	dirX = -1;
 	dirY=0;
-	Player::frameDelay =5;
+	Player::frameDelay =4;
+	
+	//prevents the sprite to loop more than its drawing on the sheet for the current row
+	if (animationRow == 6 && curFrame == 15)
+	{
+		curFrame = 0;
+	}
 }
 void Player::MoveRight()
 
@@ -143,8 +161,13 @@ void Player::MoveRight()
 	//curFrame = 2;
 	dirX = 1;
 	dirY=0;
-	Player::frameDelay =5;
+	Player::frameDelay =4;
 	
+	//prevents the sprite to loop more than its drawing on the sheet for the current row
+	if (animationRow == 6 && curFrame == 15)
+	{
+		curFrame = 0;
+	}
 }
 
 void Player::Jump()
@@ -190,7 +213,13 @@ void Player::ResetAnimation(int position)
 		dirY = 0;
 		//curFrame = 0;
 		animationRow = 2;
-		Player::frameDelay =28;
+		Player::frameDelay =38;
+		//prevents the sprite to loop more than its drawing on the sheet for the current row
+		if (animationRow == 2 && curFrame > 4)
+		{
+			curFrame = 0;
+		}
+		
 	}
 }
 
