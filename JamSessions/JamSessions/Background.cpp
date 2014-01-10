@@ -24,16 +24,23 @@ Background::Background(ALLEGRO_BITMAP *image, float velX)
 	xOffset = 0;
 	yOffset = 0;
 
-	Background::SetMap(10,100,128);
+	//columns, size tilesize
+	Background::SetMap(10,100,64); //old 10,100,128
 
 }
 
 void Background::Update()
 {
-	std::cout<<"background x is "<<x<<std::endl;
+	//std::cout<<"background x is "<<x<<std::endl;
 	std::cout<<"background frameWidth is "<<frameWidth<<std::endl;
+	std::cout<<"background velX is "<<velX<<std::endl;
+	std::cout<<"background dirX is "<<dirX<<std::endl;
 	std::cout<<"WIDTH is "<<WIDTH<<std::endl;
 	GameObject::Update();
+
+//	If ()
+
+	x += velX * dirX;
 	if(x + frameWidth <= 0)
 		x = 0;
 }
@@ -57,10 +64,10 @@ void Background::Render()
 
 	*/
 	//zero will be grass and 1 will be stone
-	int map[] = {0,0,1,1,0,0,1,1,0,0,
+	int map[] = {0,0,1,2,3,4,5,1,0,0,
 				0,1,0,0,1,1,0,0,1,0,
 				1,0,0,0,1,1,0,0,0,1,
-				0,1,0,0,1,1,0,0,1,0,
+				0,1,0,0,1,2,3,4,6,0,
 				0,0,1,1,0,0,1,1,0,0,
 				0,0,1,1,0,0,1,1,0,0,
 				0,1,0,0,1,1,0,0,1,0,

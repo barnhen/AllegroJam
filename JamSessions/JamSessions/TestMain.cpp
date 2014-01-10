@@ -2,8 +2,10 @@
 #include<allegro5\allegro_image.h>
 #include<allegro5\allegro_font.h>
 #include<allegro5\allegro_ttf.h>
+#include <allegro5\allegro_primitives.h>
 #include<iostream>
 #include<list>
+#include <math.h>
 
 #include "GameObject.h"
 #include "Player.h"
@@ -12,7 +14,7 @@
 #include "Background.hpp"
 
 bool keys[] = {false, false, false, false, false};
-enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE};
+enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE, C};
 Player *player;
 InputManager *input;
 std::list<GameObject *> objects;
@@ -27,6 +29,7 @@ int main(){
 	//==============================================
 	bool done = false;
 	bool render = false;
+	bool bound = false; // to draw colision box
 
 	float gameTime = 0;
 	int frames = 0;
@@ -86,6 +89,7 @@ int main(){
 	al_init_image_addon();
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_init_primitives_addon(); //for bound collision
 
 	//==============================================
 	//PROJECT INIT
@@ -94,7 +98,7 @@ int main(){
 
 	
 	//bgImage = al_load_bitmap("tile_stage1_bottom.png");
-	bgSheet = al_load_bitmap("background.png");
+	bgSheet = al_load_bitmap("TileStage.png");//background.png
 	//by makinge 'new' they are different bg in memory
 	//Background *bg = new Background(bgImage, 1);
 	
@@ -112,6 +116,7 @@ int main(){
 	player->Init(image);
 	objects.push_back(player);
 
+	std::cout<<"from main the tilesize is"<<bg->tileSize<<std::endl;
 
 	eventQueue = al_create_event_queue();
 	timer = al_create_timer(1.0 / 60);
@@ -198,7 +203,10 @@ int main(){
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE]=true;
 				break;
-			
+			//for drawing collision boxes
+			case ALLEGRO_KEY_C:
+				keys[C] = true;
+				break;
 			}
 			
 		}
@@ -223,6 +231,10 @@ int main(){
 				break;
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE] = false;
+				break;
+			//for drawing collision boxes
+			case ALLEGRO_KEY_F9:
+				keys[C] = false;
 				break;
 			}
 		}
@@ -347,6 +359,11 @@ int main(){
 					player->ResetAnimation(0);
 				*/
 			}
+			//for drawing collision boxes
+			if(keys[C])
+				bound = true;
+			else
+				bound = false;
 
 			//update
 			
@@ -381,6 +398,7 @@ int main(){
 		}
 
 		*/
+		
 		/*
 			the below will create the sprite sheet
 			image = the sprite sheet
@@ -397,12 +415,23 @@ int main(){
 		if(render && al_is_event_queue_empty(eventQueue))
 		{
 			render = false;
-			al_draw_textf(font18, al_map_rgb(255, 0, 255), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
+			//al_draw_textf(font18, al_map_rgb(255, 0, 255), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
 
+			
 			for(iter = objects.begin(); iter != objects.end(); ++iter)
 					(*iter)->Render();
 			//al_draw_bitmap_region(image, curFrame * frameWidth,0, frameWidth, frameHeight, x,y,0);
 
+
+			al_draw_textf(font18, al_map_rgb(255, 0, 255), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
+			al_draw_textf(font18, al_map_rgb(255, 0, 255), 55, 5, 0, "rtesr: %i", gameFPS);
+
+			
+			if(bound)
+			{
+				al_draw_filled_rectangle(bg->tileSize, bg->tileSize, bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
+				al_draw_filled_rectangle(bg->tileSize, bg->tileSize, bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
+			}
 			al_flip_display();
 
 		

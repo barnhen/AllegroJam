@@ -1,4 +1,6 @@
 #include "Player.h"
+//#include<allegro5\allegro_font.h>
+//#include<allegro5\allegro_ttf.h>
 
 
 Player::Player()
@@ -9,6 +11,7 @@ Player::Player()
 Player::~Player()
 {
 }
+
 
 void Player::Init(ALLEGRO_BITMAP *image = NULL)
 {
@@ -32,6 +35,8 @@ void Player::Init(ALLEGRO_BITMAP *image = NULL)
 
 	if(image != NULL)
 		Player::image = image;
+
+
 }
 void Player::Update()
 {

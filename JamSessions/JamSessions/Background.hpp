@@ -5,8 +5,7 @@ class Background : public GameObject
 {
 private:
 	int mapColumns;
-	int mapSize;
-	int tileSize;
+	int mapSize;	
 	int xOffset;
 	int yOffset;
 	//int map[];
@@ -14,6 +13,8 @@ public:
 	Background(void);
 	~Background(void);
 	Background(ALLEGRO_BITMAP *image, float velX);
+
+	int tileSize;
 
 	void Update();
 	void Render();
