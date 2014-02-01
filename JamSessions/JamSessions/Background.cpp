@@ -1,19 +1,20 @@
 #include "Background.hpp"
 
+using namespace background;
 
-/*
 Background::Background(void)
 {
 }
-*/
+
 
 Background::~Background(void)
 {
 }
 
-Background::Background(ALLEGRO_BITMAP *image, float velX)
+//Background::Background(ALLEGRO_BITMAP *image, float velX)
+Background::Background(ALLEGRO_BITMAP *image)
 {
-	GameObject::Init(0, 0, velX, 0, -1, 0, 0, 0);
+	GameObject::Init(0, 0, velX, 0, 0, 0, 0, 0);
 
 	SetID(MISC);
 	SetCollidable(false);
@@ -29,19 +30,103 @@ Background::Background(ALLEGRO_BITMAP *image, float velX)
 
 }
 
+void Background::SetDirX(int &dX)
+{
+	Background::dirX = dX;
+}
+
+void Background::SetVelx(float &vX)
+{
+	Background::velX = vX;
+}
+
+void Background::SetDirY(int &dY)
+{
+	Background::dirY = dY;
+}
+
+void Background::SetVelY(float &vY)
+{
+	Background::velY = vY;
+}
+
+int Background::GetDirX()
+{
+	return Background::dirX;
+}
+
+float Background::GetVelX()
+{
+	return GameObject::velX;
+}
+
+int Background::GetDirY()
+{
+	return Background::velY;
+}
+
+float Background::GetVelY()
+{
+	return Background::velY;
+}
+
+
+//to build tile collision
+float Background::getX()
+{
+	return Background::x;
+} 
+
+
+float Background::getY()
+{
+	return Background::y;
+}
+
+int Background::GetXOffset()
+{
+	return Background::xOffset;
+}
+
+int Background::GetYOffset()
+{
+	return Background::yOffset;
+}
+
+
+
+int Background::GetFrameWidth()
+{
+	return Background::frameWidth;
+}
+
+//int getBoundX(const GameObject gameObject); //to build tile collision
+//int getBoundY(const GameObject gameObject); //to build tile collision
+
 void Background::Update()
 {
 	//std::cout<<"background x is "<<x<<std::endl;
-	std::cout<<"background frameWidth is "<<frameWidth<<std::endl;
-	std::cout<<"background velX is "<<velX<<std::endl;
-	std::cout<<"background dirX is "<<dirX<<std::endl;
+	//std::cout<<"background frameWidth is "<<frameWidth<<std::endl;
+	//std::cout<<"background velX is "<<velX<<std::endl;
+	//std::cout<<"background dirX is "<<dirX<<std::endl;
 	std::cout<<"WIDTH is "<<WIDTH<<std::endl;
 	GameObject::Update();
+	//if(Background::x < 0)
+	//	x = 0;
+	//else if(Background::x > WIDTH)
+	//	x = WIDTH;
+
+	//if(Background::y < 0)
+	//	y = 0;
+	//else if(Background::y > HEIGHT)
+	//	y = HEIGHT;
 
 //	If ()
 
-	x += velX * dirX;
-	if(x + frameWidth <= 0)
+	Background::x += Background::velX * Background::dirX;
+	std::cout<<"Background::x is "<<Background::x<<std::endl;
+
+	if(Background::x + Background::frameWidth <= 0)
 		x = 0;
 }
 
@@ -49,7 +134,7 @@ void Background::Render()
 {
 	GameObject::Render();
 
-	al_draw_bitmap(image, x, y, 0);
+	//al_draw_bitmap(image, x, y, 0);
 
 	/*
 	if(x + frameWidth < WIDTH)
@@ -72,12 +157,26 @@ void Background::Render()
 				0,0,1,1,0,0,1,1,0,0,
 				0,1,0,0,1,1,0,0,1,0,
 				0,0,1,1,0,0,1,1,0,0};
-
-	for (int i = 0; i < mapSize; i++)
+	if(x + frameWidth < WIDTH)
 	{
-		al_draw_bitmap_region(image, tileSize * map[i],0,tileSize, tileSize,
-			xOffset + tileSize * (i % mapColumns), yOffset + tileSize * (i/mapColumns),0);
+		for (int i = 0; i < mapSize; i++)
+		{
+			al_draw_bitmap_region(image, tileSize * map[i],0,tileSize, tileSize,
+				x + tileSize * (i % mapColumns), y + tileSize * (i/mapColumns),0);
+		}
+		//al_draw_bitmap(image, x + frameWidth, y, 0);
+
 	}
+
+	//if(x + frameWidth < WIDTH)
+	//{
+	//	for (int i = 0; i < mapSize; i++)
+	//	{
+	//		al_draw_bitmap_region(image, tileSize * map[i],0,tileSize, tileSize,
+	//			xOffset + tileSize * (i % mapColumns) +frameWidth, yOffset + tileSize * (i/mapColumns),0);
+	//	}
+	//	//al_draw_bitmap(image, x + frameWidth, y, 0);
+	//}
 }
 
 void Background::SetMap(int mColumns, int mSize, int mTileSize)
@@ -108,3 +207,8 @@ void Background::DrawMap()
 	}
 	*/
 }
+
+//void Background::Scroll(float velX)
+//{
+//	Background::x = Background::x + velX;
+//}

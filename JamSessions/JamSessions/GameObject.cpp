@@ -50,6 +50,39 @@ void GameObject::Init(float x, float y, float velX, float velY, int dirX, int di
 	GameObject::boundY = boundY;
 }
 
+void GameObject::SetX(float x) {GameObject::x = x;}
+void GameObject::SetY(float y) {GameObject::y = y;}
+
+float GameObject::GetX() 
+{
+	return GameObject::x;
+}
+	
+float GameObject::GetY() 
+{
+	return GameObject::y;
+}
+
+//int SetDirX()
+//{
+//	
+//}
+//
+//float SetVelx()
+//{
+//
+//}
+//
+//int SetDirY()
+//{
+//
+//}
+//
+//float SetVelY()
+//{
+//
+//}
+
 void GameObject::Update()
 {
 	x += velX * dirX;

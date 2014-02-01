@@ -13,7 +13,9 @@
 #include "InputManager.h"
 #include "Background.hpp"
 
-bool keys[] = {false, false, false, false, false};
+using namespace background;
+
+bool keys[] = {false, false, false, false, false, false};
 enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE, C};
 Player *player;
 InputManager *input;
@@ -103,7 +105,8 @@ int main(){
 	//Background *bg = new Background(bgImage, 1);
 	
 	//by makinge 'new' they are different bg in memory
-	Background *bg = new Background(bgSheet, 1);
+	//Background *bg = new Background(bgSheet, 1);
+	Background *bg = new Background(bgSheet);
 	objects.push_back(bg);
 
 	//image = al_load_bitmap("player.png");
@@ -116,7 +119,7 @@ int main(){
 	player->Init(image);
 	objects.push_back(player);
 
-	std::cout<<"from main the tilesize is"<<bg->tileSize<<std::endl;
+	//std::cout<<"from main the tilesize is"<<bg->tileSize<<std::endl;
 
 	eventQueue = al_create_event_queue();
 	timer = al_create_timer(1.0 / 60);
@@ -233,7 +236,7 @@ int main(){
 				keys[SPACE] = false;
 				break;
 			//for drawing collision boxes
-			case ALLEGRO_KEY_F9:
+			case ALLEGRO_KEY_C:
 				keys[C] = false;
 				break;
 			}
@@ -312,6 +315,10 @@ int main(){
 				(*iter)->Update();
 
 				player->MoveRight();
+
+				//bg->SetDirX(0);
+
+				
 				//keys[DOWN]=false;
 				//keys[LEFT]=false;
 				//keys[UP]=false;
@@ -343,6 +350,8 @@ int main(){
 				//player->ResetAnimation(0);
 				player->Update();
 				player->ResetAnimation(0);
+
+				
 				/*
 				if(keys[UP])
 					player->MoveUp();
@@ -418,20 +427,31 @@ int main(){
 			//al_draw_textf(font18, al_map_rgb(255, 0, 255), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
 
 			
+
 			for(iter = objects.begin(); iter != objects.end(); ++iter)
 					(*iter)->Render();
 			//al_draw_bitmap_region(image, curFrame * frameWidth,0, frameWidth, frameHeight, x,y,0);
 
 
-			al_draw_textf(font18, al_map_rgb(255, 0, 255), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
-			al_draw_textf(font18, al_map_rgb(255, 0, 255), 55, 5, 0, "rtesr: %i", gameFPS);
-
-			
 			if(bound)
 			{
-				al_draw_filled_rectangle(bg->tileSize, bg->tileSize, bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
-				al_draw_filled_rectangle(bg->tileSize, bg->tileSize, bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
+				//std::cout<<"bound"<<std::endl;
+				al_draw_filled_rectangle(bg->GetX(), bg->GetY(), bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
+				//al_draw_filled_rectangle(bg->tileSize, bg->tileSize, bg->tileSize, bg->tileSize, al_map_rgba_f(.6, 0, .6, .6));
+				//al_draw_filled_rectangle(64, 400, 400, 128, al_map_rgba_f(.6, 0, .6, .6));
+				//al_draw_filled_rectangle(0, 128, 128, 128, al_map_rgba_f(.6, 0, .6, .6));
 			}
+
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 75, 5, 0, "player X: %i", player->GetX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 195, 5, 0, "player Y: %i", player->GetY());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 25, 0, "Background FrameWidth: %i", bg->GetFrameWidth());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "Background X: %i", bg->GetX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 145, 50, 0, "Background DirX: %i", bg->GetDirX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "Background GetVelX: %i", bg->GetVelX());
+
+			
+			
 			al_flip_display();
 
 		

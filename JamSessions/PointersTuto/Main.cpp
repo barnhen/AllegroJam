@@ -15,7 +15,7 @@ int main (){
 }
 */
 
-/*
+
 //passing by pointer
 void Add25(int *a){
 	*a= *a+25; // 
@@ -28,19 +28,19 @@ int main (){
 	system("pause");
 	return 0;
 }
-*/
+
 
 // pass by reference
-void Add25(int &a){
-	a= a+25; // 
-}
-
-int main (){
-	int a=10;
-	cout<<"Before Add25("<<a<<")"<<endl;
-	Add25(a);
-	cout<<a<<endl;// 
-	system("pause");
-	return 0;
-}
+//void Add25(int &a){
+//	a= a+25; // 
+//}
+//
+//int main (){
+//	int a=10;
+//	cout<<"Before Add25("<<a<<")"<<endl;
+//	Add25(a);
+//	cout<<a<<endl;// 
+//	system("pause");
+//	return 0;
+//}
 

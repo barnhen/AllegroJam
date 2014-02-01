@@ -2,7 +2,7 @@
 //#include<allegro5\allegro_font.h>
 //#include<allegro5\allegro_ttf.h>
 
-
+using namespace camera;
 Player::Player()
 {
 }
@@ -59,6 +59,7 @@ void Player::Update()
 		frameCount=0;
 	}
 }
+
 void Player::Render()
 {
 	GameObject::Render();
@@ -74,7 +75,7 @@ void Player::Render()
 	int fy = animationRow * frameHeight;
 
 	
-	if (flip == true){
+	if (flip){
 		/*
 		if (animationRow == 6 && curFrame == 15)
 		{
@@ -157,22 +158,35 @@ void Player::MoveLeft()
 	{
 		curFrame = 0;
 	}
+
+	Camera *cam = new Camera();
+		cam->ScrollCamera(1,0,2,0);
 }
 void Player::MoveRight()
-
 {
 	animationRow = 6;
 	flip = false;
 	//curFrame = 2;
 	dirX = 1;
 	dirY=0;
+	//Background bg;
 	Player::frameDelay =4;
+	//Player::x += 4;
 	
 	//prevents the sprite to loop more than its drawing on the sheet for the current row
 	if (animationRow == 6 && curFrame == 15)
 	{
 		curFrame = 0;
 	}
+
+
+	//if (Player::x > 20)
+	//{
+		Camera *cam = new Camera();
+		cam->ScrollCamera(-1,0,2,0);
+		//background::Background *bg = new Background();
+		//bg->Scroll(1);
+	//}
 }
 
 void Player::Jump()
@@ -238,4 +252,15 @@ void Player::Collided(int objectID)
 {
 	if(objectID == ENEMY)
 		lives--;
+}
+
+
+int Player::GetX()
+{
+	return Player::x;
+}
+
+int Player::GetY()
+{
+	return Player::y;
 }

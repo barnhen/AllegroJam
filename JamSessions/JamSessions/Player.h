@@ -2,6 +2,13 @@
 
 #include <allegro5\allegro5.h>
 #include "GameObject.h"
+
+#include "Background.hpp"
+#include "Camera.h"
+
+using namespace background;
+
+
 class Player : public GameObject
 {
 private:
@@ -22,6 +29,10 @@ public:
 	void MoveLeft();
 	void MoveRight();
 	void Jump();
+
+	int GetX();
+	int GetY();
+
 
 	void ResetAnimation(int position);
 

@@ -42,14 +42,24 @@ public:
 	GameObject();
 	~GameObject();
 	void Init(float x, float y, float velX, float velY, int dirX, int dirY, int boundX, int boundY);
+	
+	float getX();
+	float getY();
+
+
 	void virtual Update();
 	void virtual Render();
 
-	float GetX() {return x;}
-	float GetY() {return y;}
+	float GetX();
+	float GetY();
 
-	void SetX(float x) {GameObject::x = x;}
-	void SetY(float y) {GameObject::y = y;}
+	//int SetDirX();
+	//float SetVelx();
+	//int SetDirY();
+	//float SetVelY();
+
+	void SetX(float x);
+	void SetY(float y);
 
 	int GetBoundX() {return boundX;}
 	int GetBoundY() {return boundY;}

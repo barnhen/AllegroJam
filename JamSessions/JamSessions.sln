@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroPlatform1", "..\..\a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllegroTiledBackground", "..\..\destruct-roids\AllegroTest\AllegroTiledBackground\AllegroTiledBackground.vcxproj", "{FCBDEE12-5026-4071-985B-B259B82F2931}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OO", "OO\OO.vcxproj", "{7A2649A5-86C2-4B41-BE6B-8D2E1576D8F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,10 @@ Global
 		{FCBDEE12-5026-4071-985B-B259B82F2931}.Debug|Win32.Build.0 = Debug|Win32
 		{FCBDEE12-5026-4071-985B-B259B82F2931}.Release|Win32.ActiveCfg = Release|Win32
 		{FCBDEE12-5026-4071-985B-B259B82F2931}.Release|Win32.Build.0 = Release|Win32
+		{7A2649A5-86C2-4B41-BE6B-8D2E1576D8F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A2649A5-86C2-4B41-BE6B-8D2E1576D8F8}.Debug|Win32.Build.0 = Debug|Win32
+		{7A2649A5-86C2-4B41-BE6B-8D2E1576D8F8}.Release|Win32.ActiveCfg = Release|Win32
+		{7A2649A5-86C2-4B41-BE6B-8D2E1576D8F8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
