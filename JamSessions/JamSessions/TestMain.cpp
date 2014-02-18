@@ -12,13 +12,17 @@
 #include "Globals.h"
 #include "InputManager.h"
 #include "Background.hpp"
+#include "Camera.h"
 
 using namespace background;
+using namespace nPlayer;
+using namespace camera;
 
 bool keys[] = {false, false, false, false, false, false};
 enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE, C};
 Player *player;
 InputManager *input;
+Camera *cam;
 std::list<GameObject *> objects;
 std::list<GameObject *>::iterator iter;
 std::list<GameObject *>::iterator iter2;
@@ -36,6 +40,11 @@ int main(){
 	float gameTime = 0;
 	int frames = 0;
 	int gameFPS = 0;
+
+	//int camDx, camDy;
+	//int *camDx, *camDy;
+	//float camVelX, camVelY;
+	//float *camVelX, *camVelY;
 
 	//int width = 640;
 	//int height = 480;
@@ -305,6 +314,14 @@ int main(){
 				
 
 				player->MoveLeft();
+
+				//if ((WIDTH - player->GetX()) == 400 && (WIDTH - player->GetX()) > 0)
+				//{
+					// will pass the background object to scroll the camera. It will be recceived as reference by the camera
+					cam->ScrollCamera(*bg, *player,1);
+					//cam->ScrollCamera(*bg, 1,1);
+					//cam->ScrollCamera(*bg, 1);
+				//}
 				//keys[DOWN]=false;
 				//keys[UP]=false;
 				//keys[RIGHT]=false;
@@ -315,6 +332,21 @@ int main(){
 				(*iter)->Update();
 
 				player->MoveRight();
+
+				//camDx = 1;
+				//camDy = 0;
+				//camVelX = -1;
+				//camVelY = 1;
+				//*camDx = &camDx;
+				
+				//// will pass the background object to scroll the camera. It will be recceived as reference by the camera
+				//cam->ScrollCamera(*bg, *player,-1);
+				//cam->ScrollCamera(*bg, -1,-1);
+				//if ((WIDTH - player->GetX()) == 400 && (WIDTH - player->GetX()) > 0)
+				//{
+					// will pass the background object to scroll the camera. It will be recceived as reference by the camera
+					cam->ScrollCamera(*bg, *player,-1);
+				//}
 
 				//bg->SetDirX(0);
 
@@ -445,10 +477,12 @@ int main(){
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 5, 0, "FPS: %i", gameFPS); // display game FPS on screen
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 75, 5, 0, "player X: %i", player->GetX());
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 195, 5, 0, "player Y: %i", player->GetY());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 325, 5, 0, "Player Pos+: %i", WIDTH - player->GetX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 5, 0, "Player Centre: %2f", PLAYER_POSITION_CENTER);
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 25, 0, "Background FrameWidth: %i", bg->GetFrameWidth());
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "Background X: %i", bg->GetX());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 145, 50, 0, "Background DirX: %i", bg->GetDirX());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "Background GetVelX: %i", bg->GetVelX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 145, 50, 0, "Background Y: %i", bg->GetY());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "Background GetVelX: %i", bg->GetX());
 
 			
 			

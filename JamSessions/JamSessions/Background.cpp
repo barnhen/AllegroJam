@@ -14,7 +14,7 @@ Background::~Background(void)
 //Background::Background(ALLEGRO_BITMAP *image, float velX)
 Background::Background(ALLEGRO_BITMAP *image)
 {
-	GameObject::Init(0, 0, velX, 0, 0, 0, 0, 0);
+	//GameObject::Init(0, 0, velX, 0, 0, 0, 0, 0);
 
 	SetID(MISC);
 	SetCollidable(false);
@@ -26,26 +26,37 @@ Background::Background(ALLEGRO_BITMAP *image)
 	yOffset = 0;
 
 	//columns, size tilesize
-	Background::SetMap(10,100,64); //old 10,100,128
+	Background::SetMap(40,400,64); //old 10,100,128
 
 }
 
-void Background::SetDirX(int &dX)
+float Background::GetX()
+{
+	return Background::x;
+}
+
+float Background::GetY()
+{
+	return Background::y;
+}
+
+
+void Background::SetDirX(int dX)
 {
 	Background::dirX = dX;
 }
 
-void Background::SetVelx(float &vX)
+void Background::SetVelx(float vX)
 {
 	Background::velX = vX;
 }
 
-void Background::SetDirY(int &dY)
+void Background::SetDirY(int dY)
 {
 	Background::dirY = dY;
 }
 
-void Background::SetVelY(float &vY)
+void Background::SetVelY(float vY)
 {
 	Background::velY = vY;
 }
@@ -72,16 +83,16 @@ float Background::GetVelY()
 
 
 //to build tile collision
-float Background::getX()
-{
-	return Background::x;
-} 
-
-
-float Background::getY()
-{
-	return Background::y;
-}
+//float Background::getX()
+//{
+//	return Background::x;
+//} 
+//
+//
+//float Background::getY()
+//{
+//	return Background::y;
+//}
 
 int Background::GetXOffset()
 {
@@ -103,6 +114,13 @@ int Background::GetFrameWidth()
 //int getBoundX(const GameObject gameObject); //to build tile collision
 //int getBoundY(const GameObject gameObject); //to build tile collision
 
+void Background::Init(float X, float Y, float velX, float velY, int dirX, int DirY, int boundX, int BoundY)
+{
+	//GameObject::Init(0, 0, velX, 0, 0, 0, dirX, 0);
+	GameObject::Init(X, Y, velX, velY, dirX, dirY, boundX, BoundY);
+
+}
+
 void Background::Update()
 {
 	//std::cout<<"background x is "<<x<<std::endl;
@@ -110,6 +128,7 @@ void Background::Update()
 	//std::cout<<"background velX is "<<velX<<std::endl;
 	//std::cout<<"background dirX is "<<dirX<<std::endl;
 	std::cout<<"WIDTH is "<<WIDTH<<std::endl;
+	
 	GameObject::Update();
 	//if(Background::x < 0)
 	//	x = 0;
@@ -123,7 +142,7 @@ void Background::Update()
 
 //	If ()
 
-	Background::x += Background::velX * Background::dirX;
+	//Background::x += Background::velX * Background::dirX;
 	std::cout<<"Background::x is "<<Background::x<<std::endl;
 
 	if(Background::x + Background::frameWidth <= 0)
@@ -149,14 +168,25 @@ void Background::Render()
 
 	*/
 	//zero will be grass and 1 will be stone
-	int map[] = {0,0,1,2,3,4,5,1,0,0,
-				0,1,0,0,1,1,0,0,1,0,
-				1,0,0,0,1,1,0,0,0,1,
-				0,1,0,0,1,2,3,4,6,0,
-				0,0,1,1,0,0,1,1,0,0,
-				0,0,1,1,0,0,1,1,0,0,
-				0,1,0,0,1,1,0,0,1,0,
-				0,0,1,1,0,0,1,1,0,0};
+	//int map[] = {0,0,1,2,3,4,5,1,0,0,
+	//			 0,1,0,0,1,1,0,0,1,0,
+	//			 1,0,0,0,1,1,0,0,0,1,
+	//			 0,1,0,0,1,2,3,4,6,0,
+	//			 0,0,1,1,0,0,1,1,0,0,
+	//			 0,0,1,1,0,0,1,1,0,0,
+	//			 0,1,0,0,1,1,0,0,1,0,
+	//			 0,0,1,1,0,0,1,1,0,0};
+
+		int map[] = {0,0,1,2,3,4,5,1,0,0,0,0,1,2,3,4,5,1,0,0,0,0,1,2,3,4,5,1,0,0,0,0,1,2,3,4,5,1,0,0,
+				 0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,
+				 1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,
+				 0,1,0,0,1,2,3,4,6,0,0,1,0,0,1,2,3,4,6,0,0,1,0,0,1,2,3,4,6,0,0,1,0,0,1,2,3,4,6,0,
+				 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,
+				 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,
+				 0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,
+				 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0};
+
+
 	if(x + frameWidth < WIDTH)
 	{
 		for (int i = 0; i < mapSize; i++)

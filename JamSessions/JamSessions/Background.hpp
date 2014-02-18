@@ -16,18 +16,22 @@ namespace background{
 		//Background(ALLEGRO_BITMAP *image, float velX);
 		Background(ALLEGRO_BITMAP *image);
 
-		void SetDirX(int &dX);
-		void SetVelx(float &vX);
-		void SetDirY(int &dY);
-		void SetVelY(float &vY);
+		void SetDirX(int dX);
+		void SetVelx(float vX);
+		void SetDirY(int dY);
+		void SetVelY(float vY);
 
 		int GetDirX();
 		float GetVelX();
 		int GetDirY();
 		float GetVelY();
 
-		float getX(); //to build tile collision
-		float getY(); //to build tile collision
+		float GetX(); //to build tile collision
+		float GetY(); //to build tile collision
+
+
+		//float getX(); //to build tile collision
+		//float getY(); //to build tile collision
 		int GetXOffset();
 		int GetYOffset();
 		int GetFrameWidth();
@@ -38,6 +42,8 @@ namespace background{
 
 
 		int tileSize;
+
+		void Init(float X, float Y, float velX, float velY, int dirX, int DirY, int boundX, int BoundY);
 
 		void Update();
 		void Render();

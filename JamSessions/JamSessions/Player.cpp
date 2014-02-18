@@ -2,7 +2,9 @@
 //#include<allegro5\allegro_font.h>
 //#include<allegro5\allegro_ttf.h>
 
-using namespace camera;
+//using namespace camera;
+using namespace nPlayer;
+
 Player::Player()
 {
 }
@@ -159,8 +161,14 @@ void Player::MoveLeft()
 		curFrame = 0;
 	}
 
-	Camera *cam = new Camera();
-		cam->ScrollCamera(1,0,2,0);
+	//this will center de char into the middle of screen
+	//if (Player::x = PLAYER_POSITION_CENTER)
+	//{
+	//	Player::x = PLAYER_POSITION_CENTER;
+	//}
+
+	//Camera *cam = new Camera();
+	//	cam->ScrollCamera(1,0,2,0);
 }
 void Player::MoveRight()
 {
@@ -179,11 +187,10 @@ void Player::MoveRight()
 		curFrame = 0;
 	}
 
-
 	//if (Player::x > 20)
 	//{
-		Camera *cam = new Camera();
-		cam->ScrollCamera(-1,0,2,0);
+		//Camera *cam = new Camera();
+		//cam->ScrollCamera(-1,0,2,0);
 		//background::Background *bg = new Background();
 		//bg->Scroll(1);
 	//}
