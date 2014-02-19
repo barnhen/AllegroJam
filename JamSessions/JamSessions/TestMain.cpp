@@ -478,11 +478,11 @@ int main(){
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 75, 5, 0, "player X: %i", player->GetX());
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 195, 5, 0, "player Y: %i", player->GetY());
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 325, 5, 0, "Player Pos+: %i", WIDTH - player->GetX());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 5, 0, "Player Centre: %2f", PLAYER_POSITION_CENTER);
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 495, 5, 0, "Player Centre: %2f", PLAYER_POSITION_CENTER);
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 25, 0, "Background FrameWidth: %i", bg->GetFrameWidth());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "Background X: %i", bg->GetX());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 145, 50, 0, "Background Y: %i", bg->GetY());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "Background GetVelX: %i", bg->GetX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "BG X: %i", player->GetPosX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 185, 50, 0, "BG Y: %i", player->GetPosY());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "BG GetVelX: %i", bg->GetX());
 
 			
 			

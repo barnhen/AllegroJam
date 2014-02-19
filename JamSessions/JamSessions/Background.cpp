@@ -127,7 +127,7 @@ void Background::Update()
 	//std::cout<<"background frameWidth is "<<frameWidth<<std::endl;
 	//std::cout<<"background velX is "<<velX<<std::endl;
 	//std::cout<<"background dirX is "<<dirX<<std::endl;
-	std::cout<<"WIDTH is "<<WIDTH<<std::endl;
+	//std::cout<<"WIDTH is "<<WIDTH<<std::endl;
 	
 	GameObject::Update();
 	//if(Background::x < 0)

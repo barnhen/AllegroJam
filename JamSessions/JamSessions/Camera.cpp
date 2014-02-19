@@ -45,26 +45,27 @@ void Camera::ScrollCamera(Background& bg, Player& player, int dX)
 
 	if (dX == 1)
 	{
-		//this will center de char into the middle of screen
-		if (player.GetX() == PLAYER_POSITION_CENTER)
+		//this will center de char into the middle of screen when running backwards
+		if (player.GetX() < PLAYER_POSITION_CENTER)
 		{
 			player.SetX(PLAYER_POSITION_CENTER);
 		}
 	}
 	else if (dX == -1)
 	{
-			//this will center de char into the middle of screen
+			//this will center de char into the middle of screen when running forward
 		if (player.GetX() > PLAYER_POSITION_CENTER)
 		{
 			player.SetX(PLAYER_POSITION_CENTER);
 		}
 	}
 
-		if(WIDTH - player.GetX() == 444)
-		{
-			bg.SetDirX(dX);
-			bg.SetVelx(1);
-		}
+	// if player X is > than middle of screen
+	if(WIDTH - player.GetX() >= 444)
+	{
+		bg.SetDirX(dX);
+		bg.SetVelx(1);
+	}
 	//}
 	//else if(dX == -1){
 	//	if(WIDTH - player.GetX() == 444)

@@ -35,6 +35,8 @@ void Player::Init(ALLEGRO_BITMAP *image = NULL)
 	animationRow = 2;
 	flip = false;
 
+	//Player::posX = GameObject::GetX();
+
 	if(image != NULL)
 		Player::image = image;
 
@@ -43,6 +45,9 @@ void Player::Init(ALLEGRO_BITMAP *image = NULL)
 void Player::Update()
 {
 	GameObject::Update();
+	Player::posX = GameObject::GetX();
+	SetPosX(posX);
+	std::cout<<"PosX is "<<Player::posX<<std::endl;
 	if(x < 0)
 		x = 0;
 	else if(x > WIDTH)
@@ -75,6 +80,9 @@ void Player::Render()
 	//else
 	int fx = (curFrame) * frameWidth;
 	int fy = animationRow * frameHeight;
+
+	SetPosX(posX);
+	SetPosY(posY);
 
 	
 	if (flip){
@@ -249,6 +257,25 @@ void Player::ResetAnimation(int position)
 	}
 }
 
+void Player::SetPosX(float pX)
+{
+	Player::posX = pX;
+}
+
+void Player::SetPosY(float pY)
+{
+	Player::posX = pY;
+}
+
+int Player::GetPosX()
+{
+	return Player::posX;
+}
+
+int Player::GetPosY()
+{
+	return Player::posY;
+}
 int Player::GetLives() {return lives;}
 int Player::GetScore() {return score;}
 

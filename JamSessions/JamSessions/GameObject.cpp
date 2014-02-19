@@ -87,6 +87,9 @@ void GameObject::Update()
 {
 	x += velX * dirX;
 	y += velY * dirY;
+
+	GameObject::SetX(x);
+	GameObject::SetY(y);
 }
 
 void GameObject::Render()

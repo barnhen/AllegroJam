@@ -43,8 +43,8 @@ public:
 	~GameObject();
 	void Init(float x, float y, float velX, float velY, int dirX, int dirY, int boundX, int boundY);
 	
-	float getX();
-	float getY();
+	//float getX();
+	//float getY();
 
 
 	void virtual Update();
