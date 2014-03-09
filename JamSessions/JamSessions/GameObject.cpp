@@ -48,10 +48,15 @@ void GameObject::Init(float x, float y, float velX, float velY, int dirX, int di
 
 	GameObject::boundX = boundX;
 	GameObject::boundY = boundY;
+
+	GameObject::posX = x; // rember 20 is the starting point
 }
 
 void GameObject::SetX(float x) {GameObject::x = x;}
 void GameObject::SetY(float y) {GameObject::y = y;}
+void GameObject::SetPosX(float pX) {GameObject::posX = pX;}
+void GameObject::SetPosY(float pY) {GameObject::posY = pY;}
+
 
 float GameObject::GetX() 
 {
@@ -61,6 +66,16 @@ float GameObject::GetX()
 float GameObject::GetY() 
 {
 	return GameObject::y;
+}
+
+float GameObject::GetPosX()
+{
+	return GameObject::posX;
+}
+
+float GameObject::GetPosY()
+{
+	return GameObject::posY;
 }
 
 //int SetDirX()
@@ -88,8 +103,33 @@ void GameObject::Update()
 	x += velX * dirX;
 	y += velY * dirY;
 
+	posX += velX * dirX;
+	posY += velY * dirY;
+	//if (dirX == -1)
+	//{
+	//	posX-=1;
+	//	//posX = 0;
+	//	//posX += velX * dirX;
+	//}
+	//else if(dirX == 1)
+	//{
+	//	posX+=1;
+	//	//posX = 0;
+	//	//posX += velX * dirX;
+	//}
+	//if (dirY == 1)
+	//{
+	//	posY ++;
+	//}
+	//else if(dirX == -1)
+	//{
+	//	posX--;
+	//}
+
 	GameObject::SetX(x);
 	GameObject::SetY(y);
+	GameObject::SetPosX(posX);
+	GameObject::SetPosY(posY);
 }
 
 void GameObject::Render()

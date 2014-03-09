@@ -15,8 +15,8 @@ namespace nPlayer{
 		int score;
 		int animationRow;
 		boolean flip;
-		float posX;
-		float posY;
+		//float posX;
+		//float posY;
 	public:
 		Player();
 		~Player();
@@ -31,8 +31,8 @@ namespace nPlayer{
 		void MoveRight();
 		void Jump();
 
-		void SetPosX(float pY);
-		void SetPosY(float pX);
+		//void SetPosX(float pY);
+		//void SetPosY(float pX);
 
 		int GetX();
 		int GetY();

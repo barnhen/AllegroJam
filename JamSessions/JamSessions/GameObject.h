@@ -16,6 +16,9 @@ protected:
 	float x;
 	float y;
 
+	float posX;
+	float posY;
+
 	float velX;
 	float velY;
 
@@ -52,6 +55,8 @@ public:
 
 	float GetX();
 	float GetY();
+	float GetPosX();
+	float GetPosY();
 
 	//int SetDirX();
 	//float SetVelx();
@@ -60,6 +65,9 @@ public:
 
 	void SetX(float x);
 	void SetY(float y);
+
+	void SetPosX(float pX);
+	void SetPosY(float pY);
 
 	int GetBoundX() {return boundX;}
 	int GetBoundY() {return boundY;}
