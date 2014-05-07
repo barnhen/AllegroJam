@@ -40,8 +40,11 @@ void GameObject::Init(float x, float y, float velX, float velY, int dirX, int di
 	GameObject::x = x;
 	GameObject::y = y;
 
-	GameObject::velX = velX;
-	GameObject::velY = velY;
+	//GameObject::velX = velX;
+	//GameObject::velY = velY;
+
+	GameObject::SetVelX(velX);
+	GameObject::SetVelY(velY);
 
 	GameObject::dirX = dirX;
 	GameObject::dirY = dirY;
@@ -54,9 +57,12 @@ void GameObject::Init(float x, float y, float velX, float velY, int dirX, int di
 
 void GameObject::SetX(float x) {GameObject::x = x;}
 void GameObject::SetY(float y) {GameObject::y = y;}
+void GameObject::SetDirX(int dX) {GameObject::dirX = dX;}
+void GameObject::SetDirY(int dY) {GameObject::dirY = dY;}
 void GameObject::SetPosX(float pX) {GameObject::posX = pX;}
 void GameObject::SetPosY(float pY) {GameObject::posY = pY;}
-
+void GameObject::SetVelX(int vX){GameObject::velX = vX;}
+void GameObject::SetVelY(int vY){GameObject::velY = vY;}
 
 float GameObject::GetX() 
 {
@@ -78,20 +84,12 @@ float GameObject::GetPosY()
 	return GameObject::posY;
 }
 
-//int SetDirX()
-//{
-//	
-//}
 //
 //float SetVelx()
 //{
 //
 //}
-//
-//int SetDirY()
-//{
-//
-//}
+
 //
 //float SetVelY()
 //{

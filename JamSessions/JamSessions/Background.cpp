@@ -41,6 +41,11 @@ float Background::GetY()
 }
 
 
+void Background::SetBgSize(int tileSize, int colQty)
+{
+	Background::bgSize = tileSize * colQty;
+}
+
 void Background::SetDirX(int dX)
 {
 	Background::dirX = dX;
@@ -59,6 +64,11 @@ void Background::SetDirY(int dY)
 void Background::SetVelY(float vY)
 {
 	Background::velY = vY;
+}
+
+int Background::GetBgSize()
+{
+	return Background::bgSize;
 }
 
 int Background::GetDirX()
@@ -177,14 +187,14 @@ void Background::Render()
 	//			 0,1,0,0,1,1,0,0,1,0,
 	//			 0,0,1,1,0,0,1,1,0,0};
 
-		int map[] = {0,0,1,2,3,4,5,1,0,0,0,0,1,2,3,4,5,1,0,0,
-					 0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,
-					 1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,
-					 0,1,0,0,1,2,3,4,6,0,0,1,0,0,1,2,3,4,6,0,
-					 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,
-					 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,
-					 0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,
-					 0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0};
+		int map[] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+					 2,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,2,
+					 2,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,2,
+					 2,1,0,0,1,2,3,4,6,0,0,1,0,0,1,2,3,4,6,2,
+					 2,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,2,
+					 2,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,2,
+					 2,1,0,0,1,1,0,0,1,0,0,1,0,0,1,1,0,0,1,2,
+					 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
 
 
 	if(x + frameWidth < WIDTH)
@@ -214,6 +224,8 @@ void Background::SetMap(int mColumns, int mSize, int mTileSize)
 	mapColumns =mColumns;
 	mapSize = mSize;
 	tileSize = mTileSize;
+
+	Background::SetBgSize(mTileSize,mColumns);
 		
 }
 

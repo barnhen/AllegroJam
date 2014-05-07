@@ -2,6 +2,7 @@
 
 #include "Background.hpp"
 #include "Player.h"
+#include <allegro5\allegro_primitives.h>
 using namespace background;
 using namespace nPlayer;
 

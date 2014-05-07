@@ -58,19 +58,27 @@ public:
 	float GetPosX();
 	float GetPosY();
 
-	//int SetDirX();
+	void SetDirX(int dX);
 	//float SetVelx();
-	//int SetDirY();
+	void SetDirY(int dY);
 	//float SetVelY();
 
 	void SetX(float x);
 	void SetY(float y);
+	void SetVelX(int vX);
+	void SetVelY(int vY);
 
 	void SetPosX(float pX);
 	void SetPosY(float pY);
 
 	int GetBoundX() {return boundX;}
 	int GetBoundY() {return boundY;}
+
+	int GetDirX() {return dirX;}
+	int GetDirY() {return dirY;}
+
+	int GetVelX() {return velX;}
+	int GetVelY() {return velY;}
 
 	int GetID() {return ID;}
 	void SetID(int ID) {GameObject::ID = ID;}

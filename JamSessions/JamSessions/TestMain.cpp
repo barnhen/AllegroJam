@@ -18,8 +18,8 @@ using namespace background;
 using namespace nPlayer;
 using namespace camera;
 
-bool keys[] = {false, false, false, false, false, false};
-enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE, C};
+bool keys[] = {false, false, false, false, false, false,false};
+enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE, C,E};
 Player *player;
 InputManager *input;
 Camera *cam;
@@ -36,6 +36,8 @@ int main(){
 	bool done = false;
 	bool render = false;
 	bool bound = false; // to draw colision box
+	bool moveRight = false;
+	bool moveLeft = false;
 
 	float gameTime = 0;
 	int frames = 0;
@@ -125,7 +127,7 @@ int main(){
 		return -1;
 	}
 	al_convert_mask_to_alpha(image, al_map_rgb(255,255,255));
-	player->Init(image);
+	player->Init(image, 12, 12);
 	objects.push_back(player);
 
 	//std::cout<<"from main the tilesize is"<<bg->tileSize<<std::endl;
@@ -215,6 +217,9 @@ int main(){
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE]=true;
 				break;
+			case ALLEGRO_KEY_E:
+				keys[E] = true;
+				break;
 			//for drawing collision boxes
 			case ALLEGRO_KEY_C:
 				keys[C] = true;
@@ -243,6 +248,9 @@ int main(){
 				break;
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE] = false;
+				break;
+			case ALLEGRO_KEY_E:
+				keys[E] = false;
 				break;
 			//for drawing collision boxes
 			case ALLEGRO_KEY_C:
@@ -308,13 +316,17 @@ int main(){
 			}
 			else if(keys[LEFT])
 			{
+				moveRight = false;
 				
 				for(iter = objects.begin(); iter != objects.end(); ++iter)
 				(*iter)->Update();
 				
 
-				player->MoveLeft();
+				moveLeft = player->MoveLeft();
+				cam->ScrollCamera(*bg, *player,1);
 
+				
+				if (keys[E]){player->Dash(-1, 12);}
 				//if ((WIDTH - player->GetX()) == 400 && (WIDTH - player->GetX()) > 0)
 				//{
 					// will pass the background object to scroll the camera. It will be recceived as reference by the camera
@@ -328,11 +340,14 @@ int main(){
 			}
 			else if(keys[RIGHT])
 			{
+				moveLeft = false;
 				for(iter = objects.begin(); iter != objects.end(); ++iter)
 				(*iter)->Update();
 
-				player->MoveRight();
+				moveRight = player->MoveRight();
+				cam->ScrollCamera(*bg, *player,-1);
 
+				if (keys[E]){player->Dash(1, 12);}
 				//camDx = 1;
 				//camDy = 0;
 				//camVelX = -1;
@@ -359,6 +374,29 @@ int main(){
 			{
 				player->Jump();
 			}
+			else if(keys[E])
+			{
+				for(iter = objects.begin(); iter != objects.end(); ++iter)
+				{
+					
+					(*iter)->Update();
+					//if (keys[RIGHT]){player->Dash(1, 12);}
+					if (moveRight)
+					{
+						moveLeft = false;
+						player->Dash(1, 12);
+						cam->ScrollCamera(*bg, *player,-1);
+					}
+					//if (keys[LEFT]){player->Dash(-1, 12);}
+					if (moveLeft)
+					{
+						moveRight = false;
+						player->Dash(-1, 12);
+						cam->ScrollCamera(*bg, *player,1);
+					}
+				}
+				
+			}
 			else
 			{
 				
@@ -382,6 +420,7 @@ int main(){
 				//player->ResetAnimation(0);
 				player->Update();
 				player->ResetAnimation(0);
+				cam->ScrollCamera(*bg, *player,0);
 
 				
 				/*
@@ -480,9 +519,11 @@ int main(){
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 325, 5, 0, "Player Pos+: %i", WIDTH - player->GetX());
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 495, 5, 0, "Player Centre: %2f", PLAYER_POSITION_CENTER);
 			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 25, 0, "Background FrameWidth: %i", bg->GetFrameWidth());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "BG X: %i", player->GetPosX());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 185, 50, 0, "BG Y: %i", player->GetPosY());
-			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "BG GetVelX: %i", bg->GetX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 5, 50, 0, "player posX: %i", player->GetPosX());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 185, 50, 0, "BG Size: %i", bg->GetBgSize());
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 445, 50, 0, "Player VelX: %i", player->GetVelX());
+
+			al_draw_textf(font18, al_map_rgb(255, 255, 0), 645, 50, 0, "Player DirX: %i", player->GetDirX());
 
 			
 			

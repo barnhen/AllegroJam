@@ -9,6 +9,7 @@ namespace background{
 		int mapSize;	
 		int xOffset;
 		int yOffset;
+		int bgSize;
 		//int map[];
 	public: 
 		Background(void);
@@ -20,6 +21,7 @@ namespace background{
 		void SetVelx(float vX);
 		void SetDirY(int dY);
 		void SetVelY(float vY);
+		void SetBgSize(int tileSize, int colQty);
 
 		int GetDirX();
 		float GetVelX();
@@ -37,6 +39,7 @@ namespace background{
 		int GetFrameWidth();
 
 		int GetMap();
+		int GetBgSize();
 		//int getBoundX(const GameObject gameObject); //to build tile collision
 		//int getBoundY(const GameObject gameObject); //to build tile collision
 

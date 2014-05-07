@@ -15,9 +15,12 @@ Player::~Player()
 }
 
 
-void Player::Init(ALLEGRO_BITMAP *image = NULL)
+void Player::Init(ALLEGRO_BITMAP *image = NULL, float vX = NULL, float vY = NULL)
 {
-	GameObject::Init(20, 200, 6, 6, 0, 0, 10, 12);
+	Player::SetVelocityX(vX) ;
+	Player::SetVelocityY(vY);
+	//GameObject::Init(20/*20*/, 200, 6, 6, 0, 0, 10, 12);
+	GameObject::Init(BORDER_TILESET+20/*20*/, 200, vX, vY, 0, 0, 10, 12);
 
 	SetID(PLAYER);
 	SetAlive(true);
@@ -50,8 +53,8 @@ void Player::Update()
 	std::cout<<"PosX is "<<posX<<std::endl;
 	if(x < 0)
 		x = 0;
-	else if(x > (WIDTH-86)) // 86 my number to draw the entire picture at the border right of screen
-		x = (WIDTH-86);
+	else if(x > (WIDTH-BORDER_TILESET)) // 86 my number to draw the entire picture at the border right of screen
+		x = WIDTH-BORDER_TILESET;
 
 	if(y < 0)
 		y = 0;
@@ -103,6 +106,7 @@ void Player::Render()
 		*/
 		al_draw_scaled_bitmap(image, fx, fy, frameWidth, frameHeight, 
 			x - frameWidth / 2, y - frameHeight / 2, frameWidth * 2, frameHeight * 2,ALLEGRO_FLIP_HORIZONTAL);
+		std::cout<<"Flipping"<<std::endl;
 	}
 
 	else
@@ -153,10 +157,11 @@ void Player::MoveDown()
 	dirX=0;
 	Player::frameDelay =3;
 }
-void Player::MoveLeft()
+bool Player::MoveLeft()
 {
 	animationRow = 6; //old 1
 	flip = true;
+	Player::velX = Player::velocityX;
 	//curFrame = 2;
 	//curFrame =+ curFrame;
 	dirX = -1;
@@ -177,11 +182,13 @@ void Player::MoveLeft()
 
 	//Camera *cam = new Camera();
 	//	cam->ScrollCamera(1,0,2,0);
+	return true;
 }
-void Player::MoveRight()
+bool Player::MoveRight()
 {
 	animationRow = 6;
 	flip = false;
+	Player::velX = Player::velocityX;
 	//curFrame = 2;
 	dirX = 1;
 	dirY=0;
@@ -202,11 +209,42 @@ void Player::MoveRight()
 		//background::Background *bg = new Background();
 		//bg->Scroll(1);
 	//}
+	return true;
 }
 
 void Player::Jump()
 {
 	Player::frameDelay =3;
+}
+
+void Player::Dash(int dX, int vX)
+{
+	animationRow = 7;
+	//flip = false;
+	Player::frameDelay = 3;
+	Player::dirX = dX;
+	Player::velX = vX;
+	dirY=0;
+	if(Player::dirX == 1)
+	{
+		Player::flip = false;
+	}
+	else if (Player::dirX == -1)
+	{
+		Player::flip = true;
+	}
+
+	//prevents the sprite to loop more than its drawing on the sheet for the current row
+	if (animationRow == 7 && curFrame == 7)
+	{
+		//curFrame = 0;
+		Player::ResetAnimation(0);
+	}
+}
+
+void Player::Shoot()
+{
+	Player::frameDelay = 3;
 }
 
 void Player::ResetAnimation(int position)
@@ -300,3 +338,16 @@ int Player::GetY()
 {
 	return Player::y;
 }
+
+void Player::SetVelocityX(float vX)
+{
+	Player::velocityX = vX;
+}
+
+void Player::SetVelocityY(float vY)
+{
+	Player::velocityY = vY;
+}
+
+float Player::GetVelocityX(){return Player::velocityX;}
+float Player::GetVelocityY(){return Player::velocityY;}
