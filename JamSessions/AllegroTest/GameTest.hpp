@@ -31,6 +31,17 @@ struct Sprite
 class GameTest
 {
 public:
+	//==============================================
+	//PROJECT VARIABLES
+	//==============================================
+	bool done;
+	bool render;
+
+	bool bound;
+	bool collision;
+	Sprite ball1;
+	Sprite ball2;
+
 
 	GameTest(void);
 	~GameTest(void);

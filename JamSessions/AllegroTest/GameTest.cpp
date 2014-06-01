@@ -16,28 +16,46 @@ bool keys[] = {false, false, false, false, false};
 enum KEYS{UP, DOWN, LEFT, RIGHT, SPACE};
 
 
-GameTest::GameTest(void){};
-GameTest::~GameTest(void){};
-
-
-void GameTest::start()
+GameTest::GameTest(void)
 {
 	//==============================================
 	//PROJECT VARIABLES
 	//==============================================
-	bool done = false;
-	bool render = false;
+	done = false;
+	render = false;
 
-	bool bound = false;
-	bool collision = false;
-	Sprite ball1;
-	Sprite ball2;
+	bound = false;
+	collision = false;
+
 
 	ball1.x = 0;
 	ball1.y = 0;
 
 	ball2.x = WIDTH  / 2;
 	ball2.y = HEIGHT / 2;
+
+};
+GameTest::~GameTest(void){};
+
+
+void GameTest::start()
+{
+	////==============================================
+	////PROJECT VARIABLES
+	////==============================================
+	//bool done = false;
+	//bool render = false;
+
+	//bool bound = false;
+	//bool collision = false;
+	//Sprite ball1;
+	//Sprite ball2;
+
+	//ball1.x = 0;
+	//ball1.y = 0;
+
+	//ball2.x = WIDTH  / 2;
+	//ball2.y = HEIGHT / 2;
 
 	
 	//==============================================
